@@ -1,4 +1,4 @@
-FROM elasticsearch:5
+FROM elasticsearch:6.4.1
 
 MAINTAINER Eric Yang "ericyang879@gmail.com"
 
@@ -7,24 +7,18 @@ WORKDIR /tmp
 
 # Define default command.
 # CMD ["/elasticsearch/bin/elasticsearch"]
-RUN /usr/share/elasticsearch/bin/elasticsearch-plugin install x-pack
 
-ENV IK_VERSION 5.2.0
+ENV IK_VERSION 6.4.1
 RUN wget https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v$IK_VERSION/elasticsearch-analysis-ik-$IK_VERSION.zip
 RUN unzip elasticsearch-analysis-ik-$IK_VERSION.zip -d /usr/share/elasticsearch/plugins/ik/
 RUN rm -f elasticsearch-analysis-ik-$IK_VERSION.zip
 
 # Mount elasticsearch.yml config
-# This is a tricky problem, x-pack configuration path is /etc/elasticsearch/ which follow the offical document,
-# but elasticsearch configuration path is /usr/share/elasticsearch/config. I've asked this issue in Github, still waiting for the answer.
-# for now, just put them under both paths.
 ADD config /usr/share/elasticsearch/config
-ADD config /etc/elasticsearch
 
 RUN set -ex \
 	&& for path in \
 		# /data/elasticsearch \
-        /etc/elasticsearch \
         /data/logs/elasticsearch \
 	; do \
 		mkdir -p "$path"; \

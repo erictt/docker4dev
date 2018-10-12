@@ -26,7 +26,7 @@ This repository is used to set up a local development environment with docker.
 
 * Before you start to build, some informations you should know:
 
-        mysql: hostname -> db, username -> root, password -> mydev
+        mysql: hostname -> mysql, username -> root, password -> mydev
         php5fpm: port -> 9000
         mongo: port -> 27017, hostname -> mongo
         redis: port -> 6379, hostname -> redis

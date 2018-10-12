@@ -1,4 +1,4 @@
-FROM kibana:5
+FROM kibana:6.4.1
 
 MAINTAINER Eric Yang "ericyang879@gmail.com"
 
@@ -7,9 +7,6 @@ MAINTAINER Eric Yang "ericyang879@gmail.com"
 
 # Define working directory.
 # WORKDIR /usr/share/kibana
-
-# Define default command.
-RUN /usr/share/kibana/bin/kibana-plugin install x-pack
 
 # Mount elasticsearch.yml config
 ADD config /etc/kibana
