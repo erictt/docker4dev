@@ -1,4 +1,4 @@
-Docker for mydev
+Docker for Dev
 ==============
 
 ## Description
@@ -86,10 +86,6 @@ This repository is used to set up a local development environment with docker.
 `docker-compose run --service-ports all` : start nginx, php5fpm, mysql, mongo, redis
 
 `docker-compose run --rm --service-ports kibana` : start elasticsearch and kibana, and the monitoring page: (`http://localhost:5601/app/monitoring`), the initialized username/password is: `elastic/changeme`
-
-### KNOWN BUGS
-
-* Help pages in mario/mydev websites can't be loaded. (Seems like, the mysql data is incomplete, so maybe it's not a bug.)
 
 ### ROADMAP
 
