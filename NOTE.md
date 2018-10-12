@@ -1,22 +1,5 @@
 ## SOME NOTES
 
-### folder tree
-
-    data/
-        conf/
-        elasticsearch/
-        logs/ // keep most of the logs out of the containers
-        storage/ // database files
-    services/
-        elasticsearch/
-        kibana/ interface for elasticsearch
-        mariadb/
-        nginx/
-        php7fpm/
-        redis/
-    tools/
-        mysql-cli/
-
 ### Remove all untagged images
 
 `docker rmi $(docker images -f "dangling=true" -q)`

@@ -5,6 +5,25 @@ Docker for Dev
 
 This repository is used to set up a local development environment with docker.
 
+### Directory Structure
+
+  ```
+  data/
+      conf/
+      elasticsearch/
+      logs/ // keep most of the logs out of the containers
+      storage/ // database files
+  services/
+      elasticsearch/
+      kibana/ interface for elasticsearch
+      mariadb/
+      nginx/
+      php7fpm/
+      redis/
+  tools/
+      mysql-cli/
+  ```
+
 ## GET START
 
 ### 0. PREPARES
@@ -81,7 +100,7 @@ This repository is used to set up a local development environment with docker.
 
     3. exist bash
 
-### 7. START SERVICES YOU NEED
+### 6. START SERVICES YOU NEED
 
 `docker-compose run --service-ports all` : start nginx, php5fpm, mysql, mongo, redis
 
