@@ -11,17 +11,19 @@ This repository is used to set up a local development environment with docker.
   data/
       conf/
       elasticsearch/
-      logs/ // keep most of the logs out of the containers
-      storage/ // database files
+      logs/ # keep most of the logs out of the containers
+      scripts/ # store all of the scripts files here will be able to accessed from all containers
   services/
       elasticsearch/
-      kibana/ interface for elasticsearch
+      kibana/ # data visualization plugin for Elasticsearch
       mariadb/
       nginx/
       php7fpm/
       redis/
   tools/
       mysql-cli/
+  docker-compose.yml
+  NOTE.md # some useful commands
   ```
 
 ## GET START
@@ -109,6 +111,7 @@ This repository is used to set up a local development environment with docker.
 ### ROADMAP
 
 * [x] Initial the basic images of nginx, php7fpm, mariadb, mongodb, redis, elasticsearch.
+* [ ] Support Python development.
 * [ ] Use [`baseimage-docker`](https://github.com/phusion/baseimage-docker) to rebuild all the  the base docker image
 * [ ] Add `boot.sh` to boot containers easily.
 * [ ] Add `build.sh` to build all images easily.
