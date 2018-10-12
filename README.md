@@ -62,7 +62,9 @@ This repository is used to set up a local development environment with docker.
 
         docker build -t mydev/data ./data
         docker build -t mydev/nginx ./services/nginx/
-        docker build -t mydev/php5fpm ./services/php5fpm/
+        docker build -t mydev/php7fpm ./services/php7fpm/
+        docker build -t mydev/python3 ./services/python3/
+        docker build -t mydev/nodejs8 ./services/nodejs8/
         docker build -t mydev/redis ./services/redis/
         docker build -t mydev/mariadb ./services/mariadb/
 
@@ -107,12 +109,16 @@ This repository is used to set up a local development environment with docker.
 
 `docker-compose run --service-ports all` : start nginx, php5fpm, mysql, mongo, redis
 
+`docker-compose run --rm --service-ports python3` : start python3, mysql, mongo, redis, listen on 5000
+
+`docker-compose run --rm --service-ports nodejs8` : start python3, mysql, mongo, redis, listen on 3000
+
 `docker-compose run --rm --service-ports kibana` : start elasticsearch and kibana, and the monitoring page: (`http://localhost:5601/app/monitoring`), the initialized username/password is: `elastic/changeme`
 
 ### ROADMAP
 
 * [x] Initial the basic images of nginx, php7fpm, mariadb, mongodb, redis, elasticsearch.
-* [ ] Support Python development.
+* [x] Support Python and Nodejs development.
 * [ ] Use [`baseimage-docker`](https://github.com/phusion/baseimage-docker) to rebuild all the  the base docker image
 * [ ] Add `boot.sh` to boot containers easily.
 * [ ] Add `build.sh` to build all images easily.

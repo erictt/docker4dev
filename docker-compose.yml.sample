@@ -42,6 +42,22 @@ services:
             - search
         extra_hosts:
             - "dev.local:172.19.1.10"
+    nodejs8:
+        image: mydev/nodejs8:latest
+        volumes_from:
+            - data
+        ports:
+            - "3000:3000"
+        depends_on:
+            - mysql
+            - mongo
+        links:
+            - "mysql:mysql"
+            - "mongo:mongo"
+            - "redis:redis"
+        networks:
+            - web
+            - search
     python3:
         image: mydev/python3:latest
         volumes_from:
