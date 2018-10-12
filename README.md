@@ -53,6 +53,7 @@ This repository is used to set up a local development environment with docker.
         redis: port -> 6379, hostname -> redis
         elasticsearch: port -> 9200/9300, hostname -> elasticsearch
         kibana: port -> 5601
+        python3: port -> 5000:5000, 5001:5001
 
 * Building list:
 

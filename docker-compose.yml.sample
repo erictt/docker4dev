@@ -7,6 +7,7 @@ services:
             - LOCAL_REPO_PATH:/data/html
             - ./data/scripts:/data/scripts
             - ./data/logs:/data/logs
+            - ./data/demos:/data/demos
             - ./data/conf:/data/conf
         command: echo "Data Container"
     all:
@@ -41,6 +42,23 @@ services:
             - search
         extra_hosts:
             - "dev.local:172.19.1.10"
+    python3:
+        image: mydev/python3:latest
+        volumes_from:
+            - data
+        ports:
+            - "5000:5000"
+            - "5001:5001"
+        depends_on:
+            - mysql
+            - mongo
+        links:
+            - "mysql:mysql"
+            - "mongo:mongo"
+            - "redis:redis"
+        networks:
+            - web
+            - search
     mysql:
         image: mydev/mariadb:latest
         volumes_from:
@@ -82,7 +100,7 @@ services:
         # redis's data volume is /data, so can't use data service's volumes
         image: mydev/redis:latest
         ports:
-            - 6379:6379
+            - "6379:6379"
         volumes:
             - redis_data:/data:rw
         networks:
