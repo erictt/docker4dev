@@ -1,0 +1,142 @@
+version: '2'
+
+services:
+    data:
+        image: mydev/data:latest
+        volumes:
+            - LOCAL_REPO_PATH:/data/html
+            - ./data/scripts:/data/scripts
+            - ./data/logs:/data/logs
+            - ./data/conf:/data/conf
+        command: echo "Data Container"
+    all:
+        image: mydev/nginx:latest
+        volumes_from:
+            - data
+        links:
+            - "php7fpm:php7fpm"
+        ports:
+            - "80:80"
+            - "443:443"
+        depends_on:
+            - php7fpm
+        networks:
+            web:
+                ipv4_address: 172.19.1.10
+    php7fpm:
+        image: mydev/php7fpm:latest
+        volumes_from:
+            - data
+        ports:
+            - "9000:9000"
+        depends_on:
+            - mysql
+            - mongo
+        links:
+            - "mysql:mysql"
+            - "mongo:mongo"
+            - "redis:redis"
+        networks:
+            - web
+            - search
+        extra_hosts:
+            - "dev.local:172.19.1.10"
+    mysql:
+        image: mydev/mariadb:latest
+        volumes_from:
+            - data
+        volumes:
+            - mysql_data:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=mydev
+        ports:
+            - "3306:3306"
+        networks:
+            - web
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOSTS=mysql
+            - PMA_USER=root
+            - PMA_PASSWORD=mydev
+        restart: "no"
+        ports:
+            - 8080:80
+        links:
+            - "mysql:mysql"
+        networks:
+            - web
+    mongo:
+        image: mongo:3
+        ports:
+            - 27017:27017
+        volumes_from:
+            - data
+        volumes:
+            - mongo_data:/data/db:rw
+        command: ["mongod", "-f", "/data/conf/mongo/mongod.conf"]
+        networks:
+            - web
+    redis:
+        # redis's data volume is /data, so can't use data service's volumes
+        image: mydev/redis:latest
+        ports:
+            - 6379:6379
+        volumes:
+            - redis_data:/data:rw
+        networks:
+            - web
+    elasticsearch:
+        image: mydev/elasticsearch:latest
+        # container_name: elasticsearch
+        volumes_from:
+            - data
+        volumes:
+            - elasticsearch_data:/usr/share/elasticsearch/data
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        networks:
+            - search
+    kibana:
+        image: mydev/kibana:latest
+        container_name: kibana
+        depends_on:
+            - elasticsearch
+        ports:
+            - "5601:5601"
+        links:
+            - elasticsearch:elasticsearch
+        networks:
+            - search
+    mysql-cli:
+        image: mydev/mysql-cli:latest
+        depends_on:
+            - mysql
+        links:
+            - "mysql:mysql"
+        networks:
+            - web
+networks:
+    web:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.19.1.0/24
+                  gateway: 172.19.1.1
+    search:
+volumes:
+    mysql_data:
+        external:
+            name: mydev_mysql_data
+    redis_data:
+        external:
+            name: mydev_redis_data
+    mongo_data:
+        external:
+            name: mydev_mongo_data
+    elasticsearch_data:
+        external:
+            name: mydev_elasticsearch_data

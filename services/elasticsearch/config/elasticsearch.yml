@@ -1,0 +1,29 @@
+network.host: 0.0.0.0
+path:
+  data: /usr/share/elasticsearch/data
+  logs: /data/logs/elasticsearch
+
+# node.name:    ${HOSTNAME}
+node.name:   assets
+cluster.name: nytcn-dev
+
+# this value is required because we set "network.host"
+# be sure to modify it appropriately for a production cluster deployment
+discovery.zen.minimum_master_nodes: 1
+
+# index.analysis.analyzer.default.type: ik
+
+xpack.security.audit.enabled: true
+xpack.security.authc:
+  anonymous:
+    username: anonymous_user
+    roles: assets_rw
+    authz_exception: true
+  # realms:
+  #   file1:
+  #     type: file
+  #     order: 0
+  #     cache.hash_algo: md5
+  #   native1:
+  #     type: native
+  #     order: 1
