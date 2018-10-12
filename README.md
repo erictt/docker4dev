@@ -93,7 +93,7 @@ This repository is used to set up a local development environment with docker.
 
 ### ROADMAP
 
-* [ ] Initial the basic images.
+* [x] Initial the basic images of nginx, php7fpm, mariadb, mongodb, redis, elasticsearch.
 * [ ] Use [`baseimage-docker`](https://github.com/phusion/baseimage-docker) to rebuild all the  the base docker image
 * [ ] Add `boot.sh` to boot containers easily.
 * [ ] Add `build.sh` to build all images easily.
