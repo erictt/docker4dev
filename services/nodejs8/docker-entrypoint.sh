@@ -12,5 +12,7 @@ fi
 
 for script in /data/conf/nodejs8/run-*; do
     chmod +x "$script"
-    bash "$script"
+    pm2 start "$script"
 done
+
+pm2 logs
