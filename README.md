@@ -49,14 +49,16 @@ This repository is used to set up a local development environment with docker. S
 
 * Before you start to build, some informations you should know:
 
-        mysql: hostname -> mysql, username -> root, password -> mydev
-        php7fpm: port -> 9000
-        mongo: port -> 27017, hostname -> mongo
-        redis: port -> 6379, hostname -> redis
-        elasticsearch: port -> 9200/9300, hostname -> elasticsearch
-        kibana: port -> 5601
-        python3: port -> 5000, 5001
-        nodejs8: port -> 3000, 3001
+    ```
+    mysql: hostname -> mysql, username -> root, password -> mydev
+    php7fpm: port -> 9000
+    mongo: port -> 27017, hostname -> mongo
+    redis: port -> 6379, hostname -> redis
+    elasticsearch: port -> 9200/9300, hostname -> elasticsearch
+    kibana: port -> 5601
+    python3: port -> 5000, 5001
+    nodejs8: port -> 3000, 3001
+    ```
 
     * `python` and `nodejs` have demos already occupied `3000/5000`, and `3001/5001` are free to use.
 
@@ -65,6 +67,7 @@ This repository is used to set up a local development environment with docker. S
     * `./build.sh`
     * Alternative:
 
+        ```
         docker pull phpmyadmin/phpmyadmin
         docker pull mongo:3
 
@@ -79,19 +82,24 @@ This repository is used to set up a local development environment with docker. S
         docker build -t mydev/mysql-cli ./tools/mysql-cli/
         docker build -t mydev/elasticsearch ./services/elasticsearch/
         docker build -t mydev/kibana ./services/kibana/
+        ```
 
 ### 3. SET ALL THE HOSTNAME IN HOST MACHINE
 
-        127.0.0.1   dev.local
+```
+127.0.0.1   dev.local
+```
 
 ### 4. CREATE VOLUMES
 
 * We are using external volumes, which make it easier to backup and restore data.
 
-        docker volume create --driver local --name mydev_mysql_data
-        docker volume create --driver local --name mydev_redis_data
-        docker volume create --driver local --name mydev_mongo_data
-        docker volume create --driver local --name mydev_elasticsearch_data
+    ```
+    docker volume create --driver local --name mydev_mysql_data
+    docker volume create --driver local --name mydev_redis_data
+    docker volume create --driver local --name mydev_mongo_data
+    docker volume create --driver local --name mydev_elasticsearch_data
+    ```
 
     * NOTE: These commands already are included in `build.sh`.
 
