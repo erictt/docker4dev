@@ -63,6 +63,26 @@ Don't forget to execute this command before every `docker-compose up` or `docker
 
 `docker run --rm -v mydev_elasticsearch_data:/data/elasticsearch -v $(pwd):/backup debian:jessie tar cvf /backup/elasticsearch.tar /data/elasticsearch`
 
+### Import MySQL Databses
+
+* There are two ways to import mysql database.
+
+1. restore from tar file. plase check [NOTE.md#restore-volumes](https://github.com/erictt/docker4dev/blob/master/NOTE.md#restore-volumes) to continue.
+
+2. manually
+
+    1. login database
+
+        bash$ cd path/to/this/repo
+        bash$ `docker-compose run --rm mysql`
+
+    2. import database
+
+        bash$ `docker exec -it [db_container_id] /bin/bash`
+        bash# `/data/scripts/mysql/import_db.sh -c db_name /path/to/sqlfile.sql` // `-c` means it will create database automatically
+
+    3. exist bash
+
 ### Restore volumes
 
 * as the backup action, before restoring, you need to start the container first.

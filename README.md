@@ -36,8 +36,8 @@ This repository is used to set up a local development environment with docker.
 
 ### 1. SET UP PROJECT PATHS
 
-* All the projects will be under path `/data/html/nytimes/` in containers, so please put all your nytimes repos in the same directory.
-* copy file docker-compose.yml.sample to docker-compose.yml, then replace the keyword `LOCAL_REPO_PATH` to your local path, like mine is `/Users/eric/mydev/apps`.
+* Please notice, all the projects will be under path `/data/html/` in containers, so please put all your repos in the same directory.
+* copy file docker-compose.yml.sample to docker-compose.yml, then replace the keyword `LOCAL_REPO_PATH` to your local path, like mine is `/Users/eric/workspace` which will be mapping to `/data/html/` in all containers.
 
     PS `:%s/LOCAL_REPO_PATH/\/Users\/eric\/workspace/g`
 
@@ -86,27 +86,7 @@ This repository is used to set up a local development environment with docker.
         docker volume create --driver local --name mydev_mongo_data
         docker volume create --driver local --name mydev_elasticsearch_data
 
-### 5. IMPORT MYSQL DATABSES
-
-* There are two ways to import mysql database.
-
-1. restore from tar file. plase check [NOTE.md#restore-volumes](https://github.com/erictt/docker4dev/blob/master/NOTE.md#restore-volumes) to continue.
-
-2. manually
-
-    1. login database
-
-        bash$ cd path/to/this/repo
-        bash$ `docker-compose run --rm mysql`
-
-    2. import database
-
-        bash$ `docker exec -it [db_container_id] /bin/bash`
-        bash# `/data/scripts/mysql/import_db.sh -c db_name /path/to/sqlfile.sql` // `-c` means it will create database automatically
-
-    3. exist bash
-
-### 6. START SERVICES YOU NEED
+### 5. START SERVICES YOU NEED
 
 `docker-compose run --service-ports all` : start nginx, php5fpm, mysql, mongo, redis
 
