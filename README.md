@@ -3,9 +3,9 @@ Docker for Dev
 
 ## Description
 
-This repository is used to set up a local development environment with docker. Support Python, Nodejs and PHP.
-I assume, there will be lots of projects with different languages. And I want to separate the code with configurations and log files, and take all of the runtime envs as individual services.
-First of all, all of my projects are under the same directory, and i mounted the directory into a common container named `data` and the projects path in the container is `/data/apps/`. And the other mappings are:
+* This repository is used to set up a local development environment with docker. Support Python, Nodejs and PHP.
+* I assume, there will be lots of projects with different languages. And I want to separate the code with configurations and log files, and take all of the runtime envs as individual services.
+* First of all, all of my projects are under the same directory, and i mounted the directory into a common container named `data` and the projects path in the container is `/data/apps/`. And the other mappings are:
 
   ```
   ./data/scripts:/data/scripts # all of the useful scripts
