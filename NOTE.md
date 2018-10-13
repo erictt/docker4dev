@@ -63,7 +63,7 @@ Don't forget to execute this command before every `docker-compose up` or `docker
 
 `docker run --rm -v mydev_elasticsearch_data:/data/elasticsearch -v $(pwd):/backup debian:jessie tar cvf /backup/elasticsearch.tar /data/elasticsearch`
 
-### Import MySQL Databses
+### Import MySQL databses
 
 * There are two ways to import mysql database.
 

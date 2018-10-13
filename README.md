@@ -105,7 +105,7 @@ How to mamange the projects:
         docker volume create --driver local --name mydev_elasticsearch_data
         ```
 
-        * I use external volumes, which make it easier to backup and restore data.
+        * I use external volumes, which make it easier to backup and restore data. You can check [NOTE.md#restore-volumes](https://github.com/erictt/docker4dev/blob/master/NOTE.md#restore-volumes) to figure out how to do this.
 
 ### 3. SET ALL THE HOSTNAME IN HOST MACHINE
 
@@ -122,6 +122,10 @@ How to mamange the projects:
 `./boot.sh nodejs` : start nodejs 8, mysql, mongo, redis, Listening on 3000, 3001
 
 `./boot.sh elastic` : start elasticsearch and kibana, and the monitoring page: (`http://dev.local:5601/app/monitoring`), the initialized username/password is: `elastic/changeme`
+
+### OTHERS NOTE YOU MAY NEED
+
+* [NOTE.md](https://github.com/erictt/docker4dev/blob/master/NOTE.md).
 
 ## ROADMAP
 
