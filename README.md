@@ -102,6 +102,5 @@ This repository is used to set up a local development environment with docker.
 
 * [x] Initial the basic images of nginx, php7fpm, mariadb, mongodb, redis, elasticsearch.
 * [x] Support Python and Nodejs development.
-* [ ] Use [`baseimage-docker`](https://github.com/phusion/baseimage-docker) to rebuild all the  the base docker image
-* [ ] Add `boot.sh` to boot containers easily.
-* [ ] Add `build.sh` to build all images easily.
+* [x] Add `build.sh` to build all images easily.
+* [x] Add `boot.sh` to boot containers easily.
