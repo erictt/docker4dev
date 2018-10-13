@@ -13,7 +13,7 @@ RUN rm /etc/nginx/sites-enabled/default
 ADD etc /etc/
 
 RUN mkdir -p /data/conf/nginx /data/http /data/logs/nginx
-# VOLUME /data/logs/nginx /data/html /data/conf/nginx
+# VOLUME /data/logs/nginx /data/apps /data/conf/nginx
 
 EXPOSE 80 443
 

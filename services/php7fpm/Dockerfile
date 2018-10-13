@@ -54,7 +54,7 @@ RUN ln -s /usr/sbin/php-fpm$PHP_VERSION /usr/sbin/php-fpm
 ADD etc /etc/
 # ADD config /config/
 
-# VOLUME /data/logs/php /data/html etc/php/$PHP_VERSION/fpm/pool.d
+# VOLUME /data/logs/php /data/apps etc/php/$PHP_VERSION/fpm/pool.d
 RUN mkdir -p /data/conf/php /data/logs/php
 
 # --------------------- Add composer
@@ -84,8 +84,8 @@ RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*
 
 # Set up the volumes and working directory
-# VOLUME /data/logs/php /data/html
-WORKDIR /data/html
+# VOLUME /data/logs/php /data/apps
+WORKDIR /data/apps
 
 EXPOSE 9000
 

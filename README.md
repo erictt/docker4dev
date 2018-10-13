@@ -4,6 +4,21 @@ Docker for Dev
 ## Description
 
 This repository is used to set up a local development environment with docker. Support Python, Nodejs and PHP.
+I assume, there will be lots of projects with different languages. And I want to separate the code with configurations and log files, and take all of the runtime envs as individual services.
+First of all, all of my projects are under the same directory, and i mounted the directory into a common container named `data` and the projects path in the container is `/data/apps/`. And the other mappings are:
+
+  ```
+  ./data/scripts:/data/scripts # all of the useful scripts
+  ./data/logs:/data/logs # all of the logs should go here
+  ./data/demos:/data/demos # there are three demos for PHP/Nodejs/Python
+  ./data/conf:/data/conf # the config files for all services
+  ```
+
+How to mamange the projects:
+
+  * PHP: every project has an nginx config file under `data/conf/nginx/`. I already wrote a common php7-fpm conf file: `includes/php.conf`. Check `demo.conf` for how to add another project.
+  * NodeJS: every nodejs project ocuppys a port, so i use `pm2` to manage the start script. You can check `/data/conf/nodejs8/` for how to add a start script. Please notice that, the script's name should start with `run-`, unless it won't be executed. You can check `services/nodejs8/docker-entrypoint.sh` to see how it works.
+  * Python: same as NodeJS, so i use `pm2` to manage the start script. You can check `/data/conf/python3/` for how to add a start script.
 
 ### Directory Structure
 
@@ -38,8 +53,8 @@ This repository is used to set up a local development environment with docker. S
 
 ### 1. SET UP PROJECT PATHS
 
-* Please notice, all the projects will be under path `/data/html/` in containers, so please put all your repos in the same directory.
-* copy file docker-compose.yml.sample to docker-compose.yml, then replace the keyword `LOCAL_REPO_PATH` to your local path, like mine is `/Users/eric/workspace` which will be mapping to `/data/html/` in all containers.
+* Please notice, all the projects will be under path `/data/apps/` in containers, so please put all your repos in the same directory.
+* copy file docker-compose.yml.sample to docker-compose.yml, then replace the keyword `LOCAL_REPO_PATH` to your local path, like mine is `/Users/eric/workspace` which will be mapping to `/data/apps/` in all containers.
 
     PS `:%s/LOCAL_REPO_PATH/\/Users\/eric\/workspace/g`
 
@@ -60,7 +75,7 @@ This repository is used to set up a local development environment with docker. S
     nodejs8: port -> 3000, 3001
     ```
 
-    * `python` and `nodejs` have demos already occupied `3000/5000`, and `3001/5001` are free to use.
+    * The demos of `python` and `nodejs` already occupied `3000/5000`, but `3001/5001` are free to use.
 
 * Building list:
 
@@ -101,19 +116,23 @@ This repository is used to set up a local development environment with docker. S
     docker volume create --driver local --name mydev_elasticsearch_data
     ```
 
-    * NOTE: These commands already are included in `build.sh`.
+    * NOTE: These commands are already included in `build.sh`.
 
 ### 5. START SERVICES YOU NEED
 
-`./boot.sh all` : start nginx, php7fpm, mysql, mongo, redis
+`./boot.sh nginx` : start nginx, php7-fpm, mysql, mongo, redis. Nginx is listening on 80, and PHP is 9000
 
-`./boot.sh python` : start python 3, mysql, mongo, redis, listen on 5000, 5001
+`./boot.sh python` : start python 3, mysql, mongo, redis. Listening on 5000, 5001
 
-`./boot.sh nodejs` : start nodejs 8, mysql, mongo, redis, listen on 3000, 3001
+`./boot.sh nodejs` : start nodejs 8, mysql, mongo, redis, Listening on 3000, 3001
 
 `./boot.sh elastic` : start elasticsearch and kibana, and the monitoring page: (`http://localhost:5601/app/monitoring`), the initialized username/password is: `elastic/changeme`
 
-### ROADMAP
+
+## 
+
+
+## ROADMAP
 
 * [x] Initial the basic images of nginx, php7fpm, mariadb, mongodb, redis, elasticsearch.
 * [x] Support Python and Nodejs development.

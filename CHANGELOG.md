@@ -1,3 +1,8 @@
+## 0.3.1
+
+* Adjust the boot script.
+* Add more details in README.
+
 ## 0.3.0
 
 * Added pm2 for running multi Python and Nodejs processes.

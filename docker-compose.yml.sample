@@ -4,7 +4,7 @@ services:
     data:
         image: mydev/data:latest
         volumes:
-            - LOCAL_REPO_PATH:/data/html
+            - LOCAL_REPO_PATH:/data/apps
             - ./data/scripts:/data/scripts
             - ./data/logs:/data/logs
             - ./data/demos:/data/demos

@@ -3,7 +3,7 @@ FROM node:8
 WORKDIR /data
 
 # Create app directory
-RUN mkdir -p /data/logs/nodejs /data/html
+RUN mkdir -p /data/logs/nodejs /data/apps
 
 # Install latest pm2 version
 RUN npm install pm2 -g
