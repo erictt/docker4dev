@@ -128,10 +128,6 @@ How to mamange the projects:
 
 `./boot.sh elastic` : start elasticsearch and kibana, and the monitoring page: (`http://localhost:5601/app/monitoring`), the initialized username/password is: `elastic/changeme`
 
-
-## 
-
-
 ## ROADMAP
 
 * [x] Initial the basic images of nginx, php7fpm, mariadb, mongodb, redis, elasticsearch.
