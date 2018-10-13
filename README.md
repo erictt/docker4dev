@@ -92,9 +92,9 @@ This repository is used to set up a local development environment with docker.
 
 `docker-compose run --service-ports all` : start nginx, php5fpm, mysql, mongo, redis
 
-`docker-compose run --rm --service-ports python3` : start python3, mysql, mongo, redis, listen on 5000, 5001
+`docker-compose run --rm --service-ports python3` : start python 3, mysql, mongo, redis, listen on 5000, 5001
 
-`docker-compose run --rm --service-ports nodejs8` : start python3, mysql, mongo, redis, listen on 3000, 3001
+`docker-compose run --rm --service-ports nodejs8` : start nodejs 8, mysql, mongo, redis, listen on 3000, 3001
 
 `docker-compose run --rm --service-ports kibana` : start elasticsearch and kibana, and the monitoring page: (`http://localhost:5601/app/monitoring`), the initialized username/password is: `elastic/changeme`
 
