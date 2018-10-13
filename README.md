@@ -97,7 +97,15 @@ How to mamange the projects:
         docker build -t mydev/mysql-cli ./tools/mysql-cli/
         docker build -t mydev/elasticsearch ./services/elasticsearch/
         docker build -t mydev/kibana ./services/kibana/
+
+
+        docker volume create --driver local --name mydev_mysql_data
+        docker volume create --driver local --name mydev_redis_data
+        docker volume create --driver local --name mydev_mongo_data
+        docker volume create --driver local --name mydev_elasticsearch_data
         ```
+
+        * I use external volumes, which make it easier to backup and restore data.
 
 ### 3. SET ALL THE HOSTNAME IN HOST MACHINE
 
@@ -105,20 +113,7 @@ How to mamange the projects:
 127.0.0.1   dev.local
 ```
 
-### 4. CREATE VOLUMES
-
-* We are using external volumes, which make it easier to backup and restore data.
-
-    ```
-    docker volume create --driver local --name mydev_mysql_data
-    docker volume create --driver local --name mydev_redis_data
-    docker volume create --driver local --name mydev_mongo_data
-    docker volume create --driver local --name mydev_elasticsearch_data
-    ```
-
-    * NOTE: These commands are already included in `build.sh`.
-
-### 5. START SERVICES YOU NEED
+### 4. START SERVICES AS YOU NEED
 
 `./boot.sh nginx` : start nginx, php7-fpm, mysql, mongo, redis. Nginx is listening on 80, and PHP is 9000
 
@@ -126,7 +121,7 @@ How to mamange the projects:
 
 `./boot.sh nodejs` : start nodejs 8, mysql, mongo, redis, Listening on 3000, 3001
 
-`./boot.sh elastic` : start elasticsearch and kibana, and the monitoring page: (`http://localhost:5601/app/monitoring`), the initialized username/password is: `elastic/changeme`
+`./boot.sh elastic` : start elasticsearch and kibana, and the monitoring page: (`http://dev.local:5601/app/monitoring`), the initialized username/password is: `elastic/changeme`
 
 ## ROADMAP
 
