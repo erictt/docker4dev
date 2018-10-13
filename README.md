@@ -48,13 +48,15 @@ This repository is used to set up a local development environment with docker.
 * Before you start to build, some informations you should know:
 
         mysql: hostname -> mysql, username -> root, password -> mydev
-        php5fpm: port -> 9000
+        php7fpm: port -> 9000
         mongo: port -> 27017, hostname -> mongo
         redis: port -> 6379, hostname -> redis
         elasticsearch: port -> 9200/9300, hostname -> elasticsearch
         kibana: port -> 5601
         python3: port -> 5000, 5001
-        nodejs: port -> 3000, 3001
+        nodejs8: port -> 3000, 3001
+
+    * `python` and `nodejs` have demos already occupied `3000/5000`, and `3001/5001` are free to use.
 
 * Building list:
 
