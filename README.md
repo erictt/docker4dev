@@ -3,14 +3,14 @@ Docker for Dev
 
 ## Description
 
-This repository is used to set up a local development environment with docker.
+This repository is used to set up a local development environment with docker. Support Python, Nodejs and PHP.
 
 ### Directory Structure
 
   ```
   data/
       conf/
-      elasticsearch/
+      demos/ # includes PHP, Python and Nodejs demos for first launch
       logs/ # keep most of the logs out of the containers
       scripts/ # store all of the scripts files here will be able to accessed from all containers
   services/
@@ -18,7 +18,9 @@ This repository is used to set up a local development environment with docker.
       kibana/ # data visualization plugin for Elasticsearch
       mariadb/
       nginx/
+      nodejs8/
       php7fpm/
+      python3/
       redis/
   tools/
       mysql-cli/
@@ -60,6 +62,9 @@ This repository is used to set up a local development environment with docker.
 
 * Building list:
 
+    * `./build.sh`
+    * Alternative:
+
         docker pull phpmyadmin/phpmyadmin
         docker pull mongo:3
 
@@ -88,15 +93,17 @@ This repository is used to set up a local development environment with docker.
         docker volume create --driver local --name mydev_mongo_data
         docker volume create --driver local --name mydev_elasticsearch_data
 
+    * NOTE: These commands already are included in `build.sh`.
+
 ### 5. START SERVICES YOU NEED
 
-`docker-compose run --service-ports all` : start nginx, php5fpm, mysql, mongo, redis
+`./boot.sh all` : start nginx, php7fpm, mysql, mongo, redis
 
-`docker-compose run --rm --service-ports python3` : start python 3, mysql, mongo, redis, listen on 5000, 5001
+`./boot.sh python` : start python 3, mysql, mongo, redis, listen on 5000, 5001
 
-`docker-compose run --rm --service-ports nodejs8` : start nodejs 8, mysql, mongo, redis, listen on 3000, 3001
+`./boot.sh nodejs` : start nodejs 8, mysql, mongo, redis, listen on 3000, 3001
 
-`docker-compose run --rm --service-ports kibana` : start elasticsearch and kibana, and the monitoring page: (`http://localhost:5601/app/monitoring`), the initialized username/password is: `elastic/changeme`
+`./boot.sh elastic` : start elasticsearch and kibana, and the monitoring page: (`http://localhost:5601/app/monitoring`), the initialized username/password is: `elastic/changeme`
 
 ### ROADMAP
 
