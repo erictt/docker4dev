@@ -9,9 +9,9 @@ elif [ "$1" == "nodejs" ]; then
 elif [ "$1" == "elastic" ]; then
     docker-compose run --rm --service-ports kibana
 elif [ "$1" == "db" ]; then
-    docker-compose run --rm --service-ports mongo -d
-    docker-compose run --rm --service-ports redis -d
-    docker-compose run --rm --service-ports mysql -d
+    docker-compose run -d --rm --service-ports mongo
+    docker-compose run -d --rm --service-ports redis
+    docker-compose run -d --rm --service-ports mysql
     echo "Mysql, MongoDB, and MongoDB are runing in daemon mode."
 else
     echo "Invalid Parameter -> $1, Only support nginx|python|nodejs|elastic"
