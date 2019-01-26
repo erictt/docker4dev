@@ -1,3 +1,7 @@
+## 0.3.2
+
+* Add `db` option in `boot.sh`.
+
 ## 0.3.1
 
 * Adjust the boot script.
