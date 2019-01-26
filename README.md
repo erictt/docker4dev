@@ -123,6 +123,8 @@ How to mamange the projects:
 
 `./boot.sh elastic` : start elasticsearch and kibana, and the monitoring page: (`http://dev.local:5601/app/monitoring`), the initialized username/password is: `elastic/changeme`
 
+`./boot.sh db` : start mysql, mongo, redis, Listening on 3306, 27017, 6379, all of the databases will be running in daemon mode
+
 ### OTHERS NOTE YOU MAY NEED
 
 * [NOTE.md](https://github.com/erictt/docker4dev/blob/master/NOTE.md).
