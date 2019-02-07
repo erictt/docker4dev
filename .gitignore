@@ -3,3 +3,4 @@
 db_backup
 *.sql
 docker-compose.yml
+data/jenkins*

@@ -84,7 +84,7 @@ How to mamange the projects:
 
         ```
         docker pull phpmyadmin/phpmyadmin
-        docker pull mongo:3
+        docker pull mongo:4
 
         docker build -t mydev/data ./data
         docker build -t mydev/nginx ./services/nginx/
